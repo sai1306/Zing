@@ -1,0 +1,55 @@
+<form style="padding: 10px 60px; width: 20%;" class="example-form flex" >
+    <mat-form-field class="example">
+      <input #searchinput  [(ngModel)]="searchTerm" (keyup)="onSearch($event)" matInput matform placeholder="Search Employee">
+    </mat-form-field>
+    
+    <button mat-flat-button style="margin: 10px;" (click)="onNavigate()" color="primary">Add Employee</button>
+    
+    </form>
+  <div class="table-container" style="width: 90%;">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+      
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef > ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      </ng-container>
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef > Position </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.position }} </mat-cell>
+      </ng-container>
+  
+      <!-- Salary Column -->
+      <ng-container matColumnDef="salary" >
+        <mat-header-cell *matHeaderCellDef> Salary </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.salary  }} </mat-cell>
+      </ng-container>
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="onNavigate(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openDialog(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  

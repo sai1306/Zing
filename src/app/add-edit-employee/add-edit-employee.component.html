@@ -1,0 +1,31 @@
+<form class="flex" style="padding: 15% 25%; width: 50%; flex-direction: column;" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <!-- Name Field -->
+    <mat-form-field class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error class="error" *ngIf="employeeForm.get('name')?.hasError('required')">Name is required.</mat-error>
+      <mat-error class="error" *ngIf="employeeForm.get('name')?.hasError('minlength')">Minimum 3 characters.</mat-error>
+    </mat-form-field>
+  
+    <!-- Position Dropdown -->
+    <mat-form-field class="full-width">
+      <mat-label>Position</mat-label>
+      <input matInput formControlName="position">
+      <mat-error class="error" *ngIf="employeeForm.get('position')?.hasError('required')">Position is required.</mat-error>
+    </mat-form-field>
+  
+    <!-- Salary Field -->
+    <mat-form-field class="full-width">
+      <mat-label>Salary</mat-label>
+      <input matInput type="number" formControlName="salary">
+      <mat-error class="error" *ngIf="employeeForm.get('salary')?.hasError('required')">Salary is required.</mat-error>
+    <mat-error class="error" *ngIf="employeeForm.get('salary')?.hasError('min')">Must be a positive number.</mat-error>
+  </mat-form-field>
+
+  <!-- Action Buttons -->
+  <button (click)="(!isUpdate)?onSubmit():onUpdate()" mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">
+    {{isUpdate?'Update Employee':'Add Employee'}}
+  </button>
+
+</form>
+  
