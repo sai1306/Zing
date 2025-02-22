@@ -7,29 +7,29 @@
     
     </form>
   <div class="table-container" style="width: 90%;">
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+    <mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" >
       
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef > ID </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
       </ng-container>
   
       <!-- Position Column -->
       <ng-container matColumnDef="position">
-        <mat-header-cell *matHeaderCellDef > Position </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Position </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.position }} </mat-cell>
       </ng-container>
   
       <!-- Salary Column -->
       <ng-container matColumnDef="salary" >
-        <mat-header-cell *matHeaderCellDef> Salary </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Salary </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.salary  }} </mat-cell>
       </ng-container>
   

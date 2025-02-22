@@ -10,6 +10,10 @@ import { EmployeeService } from '../Services/employee.service';
 import { CommonModule } from '@angular/common';
 import { Input } from '@angular/core';
 import { Employee } from '../models/employee.model';
+import { Router } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { MatToolbar } from '@angular/material/toolbar';
+
 @Component({
   selector: 'app-add-edit-employee',
   standalone: true,
@@ -20,7 +24,9 @@ import { Employee } from '../models/employee.model';
     MatButtonModule,
     ReactiveFormsModule,
     MatError,
-    CommonModule
+    CommonModule,
+    MatIcon,
+    MatToolbar
   ],
   templateUrl: './add-edit-employee.component.html',
   styleUrl: './add-edit-employee.component.css'
@@ -30,7 +36,7 @@ export class AddEditEmployeeComponent implements OnInit {
   isUpdate = false;
   initValue!:Employee;
   id: string = '';
-  constructor(private fb: FormBuilder, private employeeService:EmployeeService) {
+  constructor(private fb: FormBuilder, private employeeService:EmployeeService, private router:Router) {
 
   }
 
@@ -48,6 +54,9 @@ export class AddEditEmployeeComponent implements OnInit {
     });
   }
 
+  onNavigate() {
+    this.router.navigate(['/']);
+  }
   onSubmit(): void {
     if (this.employeeForm.valid) {
       console.log('Employee Data:', this.employeeForm.value);
